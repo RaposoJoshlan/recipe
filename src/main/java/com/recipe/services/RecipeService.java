@@ -1,5 +1,6 @@
 package com.recipe.services;
 
+import com.recipe.commands.RecipeCommand;
 import com.recipe.domain.Recipe;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +12,5 @@ public interface RecipeService {
 
     Recipe findById(Long id);
 
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
