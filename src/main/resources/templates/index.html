@@ -19,10 +19,10 @@
 </head>
 <body>
 
-<div class="panel panel-primary" style="margin-left: auto;
+<div class="card card-primary" style="margin-left: auto;
     margin-right: auto; width:50%; margin-top:20px;">
-    <div class="panel-heading">
-        <h3 style="text-align: center;" class="panel-title">My Recipes!</h3>
+    <div class="card-heading">
+        <h3 style="text-align: center;" class="card-title">My Recipes!</h3>
     </div>
     <table class="table table-success table-striped table-hover" style="text-align:center;">
         <thead class="thead-inverse">
@@ -32,6 +32,7 @@
                 <th scope="col" style="text-align:center;">View</th>
                 <th scope="col" style="text-align:center;">Update</th>
                 <th scope="col" style="text-align:center;">Delete</th>
+                <th scope="col" style="text-align:center;">Ingredients</th>
             </tr>
         </thead>
         <tr th:each="recipe : ${recipes}">
@@ -40,6 +41,7 @@
             <td> <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">View</a></td>
             <td> <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a></td>
             <td> <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Delete</a></td>
+            <td> <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}">View Ingredients</a></td>
         </tr>
     </table>
 </div>
