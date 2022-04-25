@@ -3,6 +3,7 @@ package com.recipe.services;
 import com.recipe.commands.IngredientCommand;
 import com.recipe.converters.IngredientCommandToIngredient;
 import com.recipe.converters.IngredientToIngredientCommand;
+import com.recipe.converters.UnitOfMeasureCommandToUnitOfMeasure;
 import com.recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import com.recipe.domain.Ingredient;
 import com.recipe.domain.Recipe;
@@ -19,10 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
-class IngredientServiceImplTest {
+public class IngredientServiceImplTest {
 
     private final IngredientToIngredientCommand ingredientToIngredientCommand;
-
     private final IngredientCommandToIngredient ingredientCommandToIngredient;
 
     @Mock
@@ -34,20 +34,25 @@ class IngredientServiceImplTest {
     IngredientService ingredientService;
 
     //init converters
-    public IngredientServiceImplTest(IngredientCommandToIngredient ingredientCommandToIngredient) {
-        this.ingredientCommandToIngredient = ingredientCommandToIngredient;
+    public IngredientServiceImplTest() {
         this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
+        this.ingredientCommandToIngredient = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
     }
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, recipeRepository, ingredientCommandToIngredient, unitOfMeasureRepository);
+        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient,
+                recipeRepository, unitOfMeasureRepository);
     }
 
     @Test
-    void findByRecipeIdAndIngredientId() throws Exception{
+    public void findByRecipeIdAndId() throws Exception {
+    }
+
+    @Test
+    public void findByRecipeIdAndRecipeIdHappyPath() throws Exception {
         //given
         Recipe recipe = new Recipe();
         recipe.setId(1L);
@@ -56,7 +61,7 @@ class IngredientServiceImplTest {
         ingredient1.setId(1L);
 
         Ingredient ingredient2 = new Ingredient();
-        ingredient2.setId(2L);
+        ingredient2.setId(1L);
 
         Ingredient ingredient3 = new Ingredient();
         ingredient3.setId(3L);
@@ -76,6 +81,7 @@ class IngredientServiceImplTest {
         assertEquals(Long.valueOf(1L), ingredientCommand.getRecipeId());
         verify(recipeRepository, times(1)).findById(anyLong());
     }
+
 
     @Test
     public void testSaveRecipeCommand() throws Exception {
