@@ -96,6 +96,6 @@ class RecipeServiceImplTest {
         );
 
         // then
-        assertTrue(notFoundException.getMessage().contains("Recipe Not Found"));
+        assertTrue(notFoundException.getMessage().contains("Recipe with ID value: 1 not found"));
     }
 }

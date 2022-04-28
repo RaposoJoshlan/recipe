@@ -20,8 +20,9 @@
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
-        <div class="col-md-120 col-md-offset-3">
-            <h1 style="text-align:center">404 Not Found</h1>
+        <div class="col-md-120 col-md-offset-3" style="text-align:center; font-style: oblique;">
+            <h1>404 Not Found</h1>
+            <p th:text="${exception.getMessage()}" ></p>
         </div>
     </div>
 </div>
