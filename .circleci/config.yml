@@ -39,7 +39,7 @@ jobs:
           key: recipe-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test jacoco:check
+      - run: mvn integration-test clean verify
 
       - store_test_results:
           path: target/surefire-reports
