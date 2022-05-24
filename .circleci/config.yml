@@ -52,5 +52,5 @@ jobs:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
 
-      - codecov/upload
+      - codecov/upload:
           file: './site/jacoco/index.html'
