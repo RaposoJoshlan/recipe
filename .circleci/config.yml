@@ -3,6 +3,15 @@
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2.1
+
+orbs:
+  codecov: codecov/codecov@3.2.2
+workflows:
+  upload-to-codecov:
+    jobs:
+      - checkout
+      - codecov/upload
+
 jobs:
   build:
     docker:
@@ -39,7 +48,7 @@ jobs:
           key: recipe-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test jacoco:check
+      - run: mvn integration-test clean verify
 
       - store_test_results:
           path: target/surefire-reports
