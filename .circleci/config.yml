@@ -4,14 +4,6 @@
 #
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@3.2.2
-workflows:
-  upload-to-codecov:
-    jobs:
-      - checkout
-      - codecov/upload
-
 jobs:
   build:
     docker:
@@ -55,4 +47,6 @@ jobs:
 
       - run:
           name: Send to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
+          command: bash <(curl -s https://codecov.io/bash) <(curl -Os https://uploader.codecov.io/latest/linux/codecov)
+          chmod +x codecov
+          ./codecov
