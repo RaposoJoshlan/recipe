@@ -48,7 +48,9 @@ jobs:
       - run:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
+
       -run:
         curl -Os https://uploader.codecov.io/latest/linux/codecov
+        find . -iregex "codecov.*"
         chmod +x codecov
         ./codecov -t ${3c859152-a6df-401f-8ba6-f025b128b8a9}
