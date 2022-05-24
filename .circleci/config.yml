@@ -43,7 +43,7 @@ jobs:
           key: recipe-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test clean verify
+      - run: mvn integration-test cobertura:cobertura clean verify
 
       - store_test_results:
           path: target/surefire-reports
@@ -52,5 +52,5 @@ jobs:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
 
-      - codecov/upload:
-          file: "target/site/jacoco/index.html"
+#      - codecov/upload:
+#          file: "target/site/jacoco/index.html"
