@@ -4,9 +4,6 @@
 #
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@3.2.2
-
 jobs:
   build:
     docker:
@@ -51,6 +48,7 @@ jobs:
       - run:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
-
-      - codecov/upload:
-          file: './site/jacoco/index.html'
+      -run:
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+        ./codecov -t ${3c859152-a6df-401f-8ba6-f025b128b8a9}
