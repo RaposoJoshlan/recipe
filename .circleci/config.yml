@@ -9,8 +9,9 @@ orbs:
 workflows:
   upload-to-codecov:
     jobs:
-      - checkout
+#      - checkout
       - codecov/upload
+      file: 'target/site/jacoco/index.html'
 
 jobs:
   build:
